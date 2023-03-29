@@ -1,0 +1,13 @@
+<h2>Trainers & Players Checklist</h2>
+<div class="card">
+  <div class="card-header">
+    <h3>Checklist:</h3>
+  </div>
+
+  <div *ngFor="let item of trainers let i=index" class="card-body">
+    <a href="https://localhost:44437?trainerid={{item.trainerid}}">{{item.trainerid}} ({{item.trainername}}) </a>
+  </div>
+  <!--<div class="card-footer">
+    <button type="button" class="btn btn-primary" id="addnew">Add New</button>
+  </div>-->
+</div>

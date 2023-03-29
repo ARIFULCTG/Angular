@@ -1,0 +1,122 @@
+<style>
+  .form-group label {
+    justify-content: left !important;
+  }
+</style>
+
+<div class="row justify-content-center align-items-center ml-2">
+
+  <form>
+
+    <h2>
+     Master Details CRUD
+    </h2>
+    <div class="row">
+      <div class="col-md-4">
+        <!--<h2>Trainer Table</h2>-->
+        <div class="form-group">
+          <label for="trainerid">Trainer Id:</label>
+          <input id="trainerid" name="trainerid" #trainerid [value]=trainerid2 class="form-control" (input)="trainerchange()" [(ngModel)]="trainerid2" />
+        </div>
+
+        <div class="form-group">
+          <label for="trainername">Trainer Name:</label>
+          <input id="trainername" name="trainername" #trainername [value]=trainername2 class="form-control" [(ngModel)]="trainername2" />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input id="location" name="Location" #location [value]=location2 class="form-control" [(ngModel)]="location2" />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="matchdate">Match Date:</label>
+          <input type="date" name="matchdate" id="matchdate" #matchdate [value]=matchdate2 class="form-control col-md-8" [(ngModel)]="matchdate2" />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="image-upload-container btn btn-bwm col-md-8 text-left">
+            <span>Choose Image</span>
+          </label>
+          <input type="file" name="picture" id="picture" (change)="onFileChanged($event)" class="form-control col-md-8" />
+          <br />
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="playercode">Player Code:</label>
+          <input name="playercode" id="playercode" #playercode [value]=playercode2 class="form-control col-md-8" [(ngModel)]="playercode2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="playername">Player Name:</label>
+          <input name="playername" id="playername" #playername [value]=playername2 class="form-control col-md-8" [(ngModel)]=playername2 />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="traincost">Train Cost:</label>
+          <input name="traincost" id="traincost" #traincost [value]=traincost2 class="form-control col-md-8" [(ngModel)]="traincost2" />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="earned">Total Earned:</label>
+          <input name="earned" id="earned" #earned [value]=earned2 class="form-control col-md-8" [(ngModel)]="earned2" />
+        </div>
+
+        <br />
+        <button type="button" (click)="addPlayer(playercode.value, playername.value,trainerid.value,traincost.value,earned.value,matchdate.value,'')" class="btn-primary btn mr-3">Add</button>
+        <button type="button" (click)="updatePlayer(playercode, playername,trainerid,traincost,earned,matchdate)" class="btn btn-info mr-3">Update</button>
+        <button type="button" (click)="deletePlayer()" class="btn btn-danger mr-3">Delete</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+
+
+<div class="row">
+  <table class="table caption-top">
+    <caption><h2>List of Players</h2></caption>
+  </table>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>Sl No</th>
+      <th>Player Code</th>
+      <th>Player Name</th>
+      <th>Train Cost</th>
+      <th>Total Earned</th>
+      <th>Match Date</th>
+      <th>Picture</th>
+    </tr>
+
+    <tr *ngFor="let player of players let i=index" (click)="show(i,player.playercode,player.playername, player.trainerid,player.traincost,player.earned,player.matchdate,player.picture)">
+      <td>
+        {{i+1}}
+      </td>
+      <td> {{player.playercode}}</td>
+      <td> {{player.playername}}</td>
+      <td> {{player.traincost}}</td>
+      <td> {{player.earned}}</td>
+      <td> {{player.matchdate}}</td>
+      <td><img width="100" height="100" src="https://localhost:7130/Uploads/{{player.picture}}" /></td>
+
+    </tr>
+
+  </table>
+
+    <!--<hr />-->
+    <!--Data: {{data2}}-->
+    <!--<button type="button" (click)="myalert('hlo')" class="btn btn-success mr-3">Alert</button>-->
+    <!--<hr />-->
+    <!--<button type="button" (click)="saveAll()" class="btn btn-success">Save</button>
+  <button type="button" (click)="deleteAll()" class="btn btn-danger">Drop</button>-->
+</div>
+
+<div class="row">
+  <div class="table col-md-8">
+    <button type="button" (click)="saveAll()" class="btn btn-success">Save Data</button>
+    <button type="button" (click)="deleteAll()" class="btn btn-danger">Erase All</button>
+  </div>
+  </div>
